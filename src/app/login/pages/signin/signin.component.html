@@ -1,1 +1,44 @@
-<p>signin works!</p>
+<div class="login">
+  <form [formGroup]="loginForm" class="login-form" (ngSubmit)="submit()">
+    <mat-form-field>
+      <mat-label>Enter your email</mat-label>
+      <input formControlName="email" matInput required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input
+        formControlName="password"
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePassword = !hidePassword"
+        [attr.aria-label]="'hidePassword password'"
+        [attr.aria-pressed]="hidePassword"
+        type="button"
+      >
+        <mat-icon>{{
+          hidePassword ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <div class="login__button">
+      <button
+        id="login-button"
+        *ngIf="!loading"
+        [disabled]="!loginForm.valid"
+        type="submit"
+        mat-raised-button
+        color="primary"
+      >
+        Login
+      </button>
+      <mat-spinner *ngIf="loading" class="login__spiner"></mat-spinner>
+      <mat-error id="login-error-message" *ngIf="invalidCredentials"
+        >Invalid email or pasword</mat-error
+      >
+    </div>
+  </form>
+</div>

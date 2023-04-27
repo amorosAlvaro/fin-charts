@@ -50,7 +50,7 @@
             "arrowParens": "always",
             "bracketSameLine": true,
             "bracketSpacing": true,
-            "printWidth": 120,
+            "printWidth": 160,
             "semi": true,
             "singleQuote": true,
             "tabWidth": 2,
@@ -68,7 +68,16 @@
       "extends": [
         "plugin:@angular-eslint/template/recommended"
       ],
-      "rules": {}
+      "rules": {
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": ["", "app", "lib"],
+            "style": "kebab-case"
+          }
+        ]
+      }
     }
   ]
 }

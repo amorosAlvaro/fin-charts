@@ -5,10 +5,11 @@ import { LoginRoutingModule } from './login/login-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, LoginRoutingModule, BrowserAnimationsModule, LoginModule],
+  imports: [BrowserModule, AppRoutingModule, LoginRoutingModule, BrowserAnimationsModule, LoginModule, DashboardModule],
   providers: [],
   bootstrap: [AppComponent],
 })
