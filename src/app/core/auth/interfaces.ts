@@ -6,6 +6,10 @@ export interface User {
   id: number;
 }
 
+export interface Token {
+  access_token: string;
+}
+
 export interface LoginRes {
   succsesLogin: boolean;
   message: string;

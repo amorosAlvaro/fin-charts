@@ -9,6 +9,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { CoreModule } from './core/core.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderModule } from './header/header.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     LoginModule,
     DashboardModule,
+    HeaderModule,
     CoreModule,
     HttpClientModule,
     JwtModule.forRoot({
@@ -28,8 +30,6 @@ import { HttpClientModule } from '@angular/common/http';
           return localStorage.getItem('acces_token');
         },
         // TODO: change for prod
-        allowedDomains: ['http://localhost:4200'],
-        disallowedRoutes: ['http://localhost:4200/dashboard'],
       },
     }),
   ],
