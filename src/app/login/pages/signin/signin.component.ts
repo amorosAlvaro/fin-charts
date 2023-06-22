@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -17,19 +18,18 @@ export class SigninComponent {
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   submit() {
+    const email = this.loginForm.controls.email.value;
+    const password = this.loginForm.controls.password.value;
+    if (!email || !password) return;
+
     this.loading = true;
-    setTimeout(() => {
-      if (this.loginForm.controls.email.value === 'test@gmail.com' && this.loginForm.controls.password.value === '123456') {
-        this.invalidCredentials = false;
-        this.loading = false;
-        this.router.navigate(['/signup']);
-      } else {
-        this.invalidCredentials = true;
-        this.loading = false;
-      }
-    }, 1000);
+    this.authService.login(email, password).subscribe((loginRes) => {
+      if (loginRes.succsesLogin) this.router.navigate(['dashboard']);
+      if (!loginRes.succsesLogin) alert(loginRes.message);
+      this.loading = false;
+    });
   }
 }
